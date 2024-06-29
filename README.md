@@ -1,1 +1,44 @@
-# odoo-cloud-install
+Script de Instalación de Odoo en Servidores Linux
+Este script automatiza la instalación de Odoo en un servidor Linux, simplificando el proceso de configuración y despliegue, garantizando que todos los requisitos y dependencias sean instalados correctamente.
+
+Características
+Instalación Automática: Instala Odoo y todas sus dependencias de manera automática.
+Compatibilidad: Funciona en distribuciones populares de Linux como Ubuntu, Debian y CentOS.
+Configuración Personalizable: Permite la configuración de parámetros importantes como la versión de Odoo, el nombre de la base de datos y las credenciales de usuario.
+Seguridad: Incluye configuraciones de seguridad básicas, como la creación de un usuario dedicado para Odoo y la configuración de firewall.
+Soporte para Nginx y PostgreSQL: Configura y optimiza Nginx como proxy inverso y PostgreSQL como base de datos.
+Requisitos
+Un servidor Linux actualizado.
+Acceso root o permisos de sudo.
+Instrucciones de Uso
+Clonar el Repositorio:
+
+bash
+Copiar código
+git clone https://github.com/tu_usuario/nombre_del_repositorio.git
+cd nombre_del_repositorio
+Dar Permisos de Ejecución al Script:
+
+bash
+Copiar código
+chmod +x install_odoo.sh
+Ejecutar el Script:
+
+bash
+Copiar código
+sudo ./install_odoo.sh
+Seguir las Instrucciones en Pantalla: El script solicitará información necesaria y guiará a través del proceso de instalación.
+
+Componentes Instalados
+Odoo: El software principal.
+PostgreSQL: Base de datos relacional utilizada por Odoo.
+Nginx: Servidor web y proxy inverso.
+Python: Lenguaje de programación necesario para ejecutar Odoo y sus dependencias.
+Personalización
+El script puede ser modificado para adaptarse a configuraciones específicas. Los parámetros como la versión de Odoo y la configuración de la base de datos pueden ser ajustados editando las variables correspondientes en el script.
+
+Contribuciones
+Las contribuciones son bienvenidas. Si encuentras un problema o tienes una mejora, por favor abre un issue o envía un pull request.
+
+Licencia
+Este proyecto está licenciado bajo la Licencia MIT. Para más detalles, consulta el archivo LICENSE.
