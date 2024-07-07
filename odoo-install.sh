@@ -73,7 +73,6 @@ echo "1) Community (Gratuita y Open Source)"
 echo "2) Enterprise (Requiere un código de licencia y es de pago)"
 read -p "Selecciona la edición que deseas instalar (1, 2): " edition_choice
 
-echo -e "\n"
 case $edition_choice in
     1)
         echo -e "\033[1;32mHas seleccionado Odoo Community.\033[0m"
