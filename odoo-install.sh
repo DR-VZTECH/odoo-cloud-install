@@ -76,28 +76,27 @@ read -p "Selecciona la edición que deseas instalar (1, 2): " edition_choice
 case $edition_choice in
     1)
         echo -e "\033[1;32mHas seleccionado Odoo Community.\033[0m"
-        echo -e "\n"
-	echo -e "\nClonando el repositorio de Odoo Base..."
+        echo -e "\nClonando el repositorio de Odoo Base..."
         sudo git clone https://github.com/odoo/odoo -b $odoo_version /opt/odoo/source/odoo
         if [ $? -eq 0 ]; then
-                echo -e "\n\033[1;32mRepositorio de Odoo clonado exitosamente en /opt/odoo/source/odoo.\033[0m"
+            echo -e "\033[1;32mRepositorio de Odoo clonado exitosamente en /opt/odoo/source/odoo.\033[0m"
         else
-                echo -e "\033[1;31mError al clonar el repositorio de Odoo. Verifica los permisos y el espacio disponible.\033[0m"
+            echo -e "\033[1;31mError al clonar el repositorio de Odoo. Verifica los permisos y el espacio disponible.\033[0m"
+            exit 1
         fi
-        echo -e "\n"
-;;
+        ;;
     2)
-	echo -e "\nClonando el repositorio de Odoo Base..."
-	sudo git clone https://github.com/odoo/odoo -b $odoo_version /opt/odoo/source/odoo
-	if [ $? -eq 0 ]; then
-    		echo -e "\n\033[1;32mRepositorio de Odoo clonado exitosamente en /opt/odoo/source/odoo.\033[0m"
-	else
-    		echo -e "\033[1;31mError al clonar el repositorio de Odoo. Verifica los permisos y el espacio disponible.\033[0m"
-	fi
-	echo -e "\n"
         echo -e "\033[1;32mHas seleccionado Odoo Enterprise. Por favor, asegúrate de tener un token de acceso personal de GitHub.\033[0m"
         read -p "Introduce tu token de acceso personal de GitHub: " github_pat
-        echo -e "\n\033[1;34mClonando el repositorio de Odoo Enterprise...\033[0m"
+        echo -e "\nClonando el repositorio de Odoo Base..."
+        sudo git clone https://$github_pat@github.com/odoo/odoo -b $odoo_version /opt/odoo/source/odoo
+        if [ $? -eq 0 ]; then
+            echo -e "\033[1;32mRepositorio de Odoo clonado exitosamente en /opt/odoo/source/odoo.\033[0m"
+        else
+            echo -e "\033[1;31mError al clonar el repositorio de Odoo. Verifica los permisos y el espacio disponible.\033[0m"
+            exit 1
+        fi
+        echo -e "\nClonando el repositorio de Odoo Enterprise..."
         sudo git clone https://$github_pat@github.com/odoo/enterprise -b $odoo_version /opt/odoo/source/enterprise
         if [ $? -eq 0 ]; then
             echo -e "\033[1;32mRepositorio de Odoo Enterprise clonado exitosamente.\033[0m"
@@ -114,11 +113,11 @@ esac
 
 echo -e "\n\033[1;34m=== Configuración y Ejecución de Odoo con Docker ===\033[0m"
 cd /opt/odoo/config
-sudo docker build --pull --rm -f "Dockerfile" -t odoo:latest "."
+sudo docker build --pull --rm -f "Dockerfile" -t odoo:$odoo_version "."
 if [ $? -eq 0 ]; then
     sudo docker-compose -f "docker-compose.yml" up -d --build
     if [ $? -eq 0 ]; then
-        echo -e "\n\033[1;32mOdoo $odoo_version está ejecutándose en http://localhost:8069\033[0m"
+        echo -e "\033[1;32mOdoo $odoo_version está ejecutándose en http://localhost:8069\033[0m"
         echo -e "\033[1;32mTodo fue realizado de manera satisfactoria.\033[0m"
     else
         echo -e "\033[1;31mError al iniciar Odoo con Docker Compose. Revisa la configuración.\033[0m"
