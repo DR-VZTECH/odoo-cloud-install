@@ -30,6 +30,11 @@ Este script automatiza la instalación de Odoo en un servidor Linux, simplifican
    ```bash
    sudo bash install-odoo.sh
 
+3.1. **O en su Defecto Usar ./ Para Ejecucion**:
+   ```bash
+   ./install-odoo.sh
+   ```
+
 4. **Dar Permisos de Ejecucion**: Seguir las instrucciones del script dependiendo de la version de Odoo que desee instalar (15.0, 16.0 , 17.0)
 
 ## Componentes Instalados
