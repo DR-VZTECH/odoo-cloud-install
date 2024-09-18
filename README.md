@@ -26,7 +26,7 @@ Este script automatiza la instalación de Odoo en un servidor Linux, simplifican
    ```bash
    chmod +x install-odoo.sh
    
-3. **Dar Permisos de Ejecucion**:
+3. **Si se usa ZSH usamos Bash, con esto ejecutamos el script desde Odoo**:
    ```bash
    sudo bash install-odoo.sh
 
